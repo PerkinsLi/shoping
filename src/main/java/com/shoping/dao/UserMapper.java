@@ -8,6 +8,8 @@ public interface UserMapper {
 
     int checkUserName(String username);
 
+    int checkEmail(String email);
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(User record);
