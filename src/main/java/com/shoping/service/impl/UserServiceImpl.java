@@ -46,7 +46,7 @@ public class UserServiceImpl implements IUserService {
             return responseValid;
         }
 
-        responseValid = checkValid(user.getUsername(),Const.EMAIL);
+        responseValid = checkValid(user.getEmail(),Const.EMAIL);
         if (!responseValid.isSuccess()){
             return responseValid;
         }
@@ -64,17 +64,17 @@ public class UserServiceImpl implements IUserService {
     @Override
     public ServerResponse<String> checkValid(String str, String type) {
         if (StringUtils.isNotBlank(type)){
-            if (Const.EMAIL.equals(type)){
+            if (Const.USER_NAME.equals(type)){
                 int resultCountUsername = userMapper.checkUserName(str);
                 if (resultCountUsername > 0) {
                     return ServerResponse.createByErrorMessage("用户名已存在");
                 }
             }
 
-            if (Const.USER_NAME.equals(type)){
+            if (Const.EMAIL.equals(type)){
                 int resultCountUsername = userMapper.checkEmail(str);
                 if (resultCountUsername > 0) {
-                    return ServerResponse.createByErrorMessage("用户名已存在");
+                    return ServerResponse.createByErrorMessage("email已存在");
                 }
             }
         }else {
@@ -147,8 +147,12 @@ public class UserServiceImpl implements IUserService {
         return ServerResponse.createByErrorMessage("密码更新失败");
     }
 
+    @Override
     public ServerResponse<User> updateUserInfo(User user) {
         int rowCount = userMapper.checkEmailByUserId(user.getEmail(),user.getId());
+        if (rowCount > 0) {
+            return ServerResponse.createByErrorMessage("邮箱已被占用");
+        }
         User updateUser = new User();
         updateUser.setId(user.getId());
         updateUser.setEmail(user.getEmail());
@@ -158,8 +162,19 @@ public class UserServiceImpl implements IUserService {
 
         int updateCount = userMapper.updateByPrimaryKeySelective(updateUser);
         if (updateCount > 0) {
+            updateUser.setUsername(user.getUsername());
             return ServerResponse.createBySuccessMessage("更新个人信息成功", updateUser);
         }
         return ServerResponse.createByErrorMessage("更新个人信息失败");
+    }
+
+    @Override
+    public ServerResponse<User> getUserInfo(Integer userId) {
+        User user= userMapper.selectByPrimaryKey(userId);
+        if (user == null) {
+            return ServerResponse.createByErrorMessage("获取用户信息失败");
+        }
+        user.setPassword(StringUtils.EMPTY);
+        return ServerResponse.createBySuccess(user);
     }
 }

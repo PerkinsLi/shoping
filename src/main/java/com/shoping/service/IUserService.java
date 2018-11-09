@@ -70,4 +70,11 @@ public interface IUserService {
      * @return
      */
     ServerResponse<User> updateUserInfo(User user);
+
+    /**
+     * 根据id获取用户详细信息
+     * @param userId
+     * @return
+     */
+    ServerResponse<User> getUserInfo(Integer userId);
 }
