@@ -1,0 +1,24 @@
+  1. elsaticsearch 安装x-pack找不到Java运行环境
+  Could not find any executable java binary. Please install java in your PATH or set JAVA_HOME
+  
+  解决：
+  新建JAVA_HOME,路径指到bin上一层，elasticsearch 会自己找到bin目录
+  
+  2. windows环境下 elasticsearch 安装x-pack 没有setup-passwords
+  解决：
+	使用users.bat 创建一个用户
+	
+3. 用springboot集成es使用Java 连接es时报错
+
+NoNodeAvailableException[None of the configured nodes are available: [{#transport#-1}{RVuRCCCsT8Oq91pIryf7OQ}{localhost}{127.0.0.1:9300}]
+
+原因：
+	spring.data.elasticsearch.cluster-name=my-application
+	配置的cluster-name 在es配置文件（elasticsearch\config\elasticsearch.yml）
+	中不存在
+
+4. org.elasticsearch.bootstrap.BootstrapException: java.nio.file.NoSuchFileException: C:\software\elasticsearch-5.5.3\plugins\logstash-5.5.3\plugin-descriptor.properties
+	
+	
+5. Cannot create pipeline {:reason=>"Expected one of #, if, \", ', } at line 2, column 1 (byte 9) after input {\n"}
+  

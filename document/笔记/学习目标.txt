@@ -1,0 +1,11 @@
+学习目标：
+1. elasticsearch
+	 (1)配置好环境，安装es,kibana,logstash
+	 (2) 搭建一个springboot项目demo，对es进行基本的增删改查
+	 (3) 安装ik分词插件，对查询关键字进行分词，提升搜索体验
+2. Kafka
+	(1)安装Kafka
+	(2)搭建一个springboot项目demo，使用Kafka进行消息处理，能够实现消息发送接收，消息订阅
+	
+3. shiro
+	(1)搭建一个springboot项目，集成shiro，使用shiro进行身份验证和会话管理

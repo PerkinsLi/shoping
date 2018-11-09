@@ -1,0 +1,34 @@
+电商系统笔记
+
+nginx 常用命令：
+
+nginx -t  // 测试配置文件
+nginx -s stop  // 停止nginx服务
+nginx -s reload  // 重启nginx
+ps -ef|grep nginx  // 查看进程命令
+
+kill -HUP PID  // 平滑重启
+（当执行这个命令时，nginx会
+继续给正在连接的客户端提供服务，直到所有连接的客户端，
+结束，nginx会加载新的配置文件，如果新的配置文件有问题，nginx会使用旧的配置文件）
+
+
+nginx转发配置：
+windows 修改host文件，添加如下行:
+127.0.0.1       image.perkins.com
+127.0.0.1       tomcat.perkins.com
+
+编写image_com.conf，tomcat_com.conf文件
+在nginx.conf 文件引入编写的文件：
+include vhost/*.conf;
+
+
+mybatis-generator 生成的xml 文件中，可以把时间戳列直接在sql中传入，如在更新一列时，xml的sql 中的update_time 传入值直接改为now() 
+
+mybatis-plugin
+
+mybatis-pageHelper
+
+spring 学习方法，GitHub官方demo克隆下来，run起来
+
+log 文件打在C盘personal/logs文件夹下

@@ -1,0 +1,24 @@
+
+	权限验证：这个在api验签后再进行验证执行
+	登陆通过验证生成token
+	将token 以 id-token存入redis
+	返回给前台token和用户id
+	以后访问需要登陆权限的的api时，在请求头带上token即可，直到token过期，重新登录
+	
+	
+	
+	api验签： 这个需要先验证，因为所有的api都需要验签
+	客户端：
+		url: http://www.xyy.com/user/login?along=12&decode=32&beat=45
+		加密：
+			1.生成 timestamp（时间戳），nonce（随机数），userId（用户id），
+			2.将参数升序排列,并按一定规则拼接字符串str：along=12&beat=45&decode=32&timestamp&nonce&userId
+			3.将str 使用MD5加密，生成signature
+			4.将 timestamp（时间戳），nonce（随机数），userId（用户id）加入请求头
+			5.加密后请求url:http://www.xyy.com/user/login?along=12&decode=32&beat=45&signature=signature
+			
+	后台服务器：
+		1.获取 timestamp（时间戳），nonce（随机数），userId（用户id）
+		2.根据 timestamp 和当前时间进行对比，看时间差是否超过一定时间如10分钟，超过则请求过期
+		3.获取 所有请求参数，后台根据前台相同规则生成signature，然后根据生成的signature和传来的signature进行对比，
+		不同则拒绝访问

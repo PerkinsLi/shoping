@@ -1,0 +1,107 @@
+WIFI: 63231966
+
+
+
+erl -v // 查看rabbitmq版本
+rabbitmqctl status  // 查看rabbitmq状态
+rabbitmq-plugins enable rabbitmq_management //开启rabbitmq管理界面
+@restController 会将返回结果自动转换为json格式字段， @Controller会解析为"json.html"，并找对应的页面
+
+mybatis-generator 生成的xml代码重复追加
+解决方法：
+	这个属性不能设为true，即注释不能去，去掉xml生成的代码就会有重复的
+	<property name="suppressAllComments" value="true"/>
+	
+spring 定时器容易导致内存泄露
+
+数据库：
+ url:rm-uf6u3t22oj47i7l8czo.mysql.rds.aliyuncs.com:3306
+ 账号：root 密码：Wor8SNk#^m!Z
+ 
+ 家里IP
+ 192.168.137.39
+
+elastic 用户密码
+
+用户：myelastic 密码：changeme
+
+elasticsearch 默认分词器修改, 可在建立索引时在@Field注解中设置值为ik_smart
+
+搜索框架搭建：
+1. elasticsearch 5.5.3   
+2. Kibana 5.5.3 
+2. logstash 5.5.3  (logstash-input-jdbc)  实现es和MySQL数据同步，
+	logstash-input-jdbc 插件无法实现删除同步，在MySQL中删除了，es中还存在，使用逻辑删除
+	
+elasticsearch
+	elasticsearch常用api
+	//查看所有的索引，并以json格式输出
+	GET _cat/indices?format=json&pretty
+	//创建一个空索引，索引配置均为默认
+	PUT user
+
+kafka 
+	安装zookeeper，运行zookeeper(zkserver)
+	安装Kafka，运行Kafka
+	cd 到(C:\software\kafka_2.11-2.0.0\bin\windows)
+	运行命令
+	(kafka-server-start.bat C:\software\kafka_2.11-2.0.0\config\server.properties)
+	
+	测试Kafka：
+	创建topic (kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic testTopic001)
+	
+	创建消费者 (kafka-console-producer.bat --broker-list localhost:9092 --topic testTopic001)
+	
+	消费者连接到指定topic (kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic testTopic001 --from-beginning)
+
+logstash
+	logstash是一个单独的程序，不要将它当成elasticsearch的插件安装了
+	logstash 安装logstash-input-jdbc插件时修改logstash的Gemfile文件，
+	source "https://rubygems.org" 改为 source "http://rubygems.org"
+	否者报错：
+	Unable to download data from https://gems.ruby-china.org - bad response Not Found 404 (https://gems.ruby-china.org/latest_specs.4.8.gz)
+	ERROR: Installation aborted, verification failed for logstash-input-jdbc
+	
+	logstash同步es与MySQL操作：
+	编写logstash配置文件
+	启动logstash
+	C:\software\logstash-5.5.3\bin\logstash.bat -f  C:\software\logstash-5.5.3\config\MySQL\jdbc.conf
+	
+
+	
+	
+	
+项目技术栈：
+springBoot 2.0.5
+elasticsearch 5.5.3 (logstash  logstash-input-jdbc 使用该插件实现es与Mysql数据进行同步)
+redis
+kafka(需要用到zookeeper)
+Mybatis(使用 mybatis-generator 自动生成mapper，xml，entity文件)
+MySQL 
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

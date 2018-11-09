@@ -1,0 +1,59 @@
+tb_comment 用户评论表
+
+tb_consume_list 会员消费表
+
+tb_favorites 用户收藏表
+
+tb_message 推送消息表
+
+tb_notices 购买须知表
+
+tb_op_log 
+
+tb_order 订单表
+
+tb_order_operation 订单操作记录表
+
+tb_order_refund 退款信息表
+
+tb_product 产品表
+
+tb_product_category 产品分类表
+
+tb_product_files 产品文件表
+
+tb_quotation 产品报价表
+
+tf_paid 平台支付表
+
+tf_payable 平台应付表
+
+tf_payment_list
+
+tf_receivable 平台应收表
+
+tf_received 平台实收表
+
+tm_account_store 门店账号关联表
+
+tm_member 商户会员表
+
+tm_merchant 商户表
+
+tm_merchant_store 商户门店关联表
+
+tm_store 门店表
+
+tm_store_category 门店分类表
+
+tm_store_files 门店文件表
+
+tm_store_member 门店会员关联表
+
+tp_login_log 登录日志表
+
+tp_store 门店账户信息表
+
+tp_user 用户信息表
+
+
