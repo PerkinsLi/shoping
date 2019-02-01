@@ -32,3 +32,8 @@ mybatis-pageHelper
 spring 学习方法，GitHub官方demo克隆下来，run起来
 
 log 文件打在C盘personal/logs文件夹下
+
+
+支付宝当面付demo
+将   WEB-INF/lib下的jar加入dependces
+运行alipay/demo/trade 下的main函数
